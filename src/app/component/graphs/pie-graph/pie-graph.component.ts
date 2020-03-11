@@ -3,12 +3,11 @@ import { Chart } from 'angular-highcharts';
 import { PiegraphServiceAbstract } from '../../../service/pie-graph/pie-grapg.service.abstract';
 import * as Variablepie from 'highcharts/modules/variable-pie';
 import * as Highcharts from 'highcharts';
-import * as HighchartsMore from 'highcharts/highcharts-more';
-import * as HighchartsExporting from 'highcharts/modules/exporting';
+import HC_exporting from 'highcharts/modules/exporting';
+
 import { PieGraphDataInterface } from 'src/app/model/pie-graph/pie-graph-data.interface';
-
-Variablepie(Highcharts);
-
+HC_exporting(Highcharts);
+Variablepie(Highcharts)
 @Component({
   selector: 'app-pie-graph',
   templateUrl: './pie-graph.component.html',
@@ -16,6 +15,7 @@ Variablepie(Highcharts);
 })
 export class PieGraphComponent implements OnInit {
   public chart: Chart;
+  public Variablepie = Variablepie;
   public Highcharts = Highcharts;
   public chartConstructor = 'chart';
   public updateFromInput = false;
@@ -25,7 +25,7 @@ export class PieGraphComponent implements OnInit {
     this.chart = new Chart({
       chart: {
         type: 'variablepie',
-        height: '70%'
+        height: '50%'
       },
       title: {
         text: 'Coronavirus cases by countries'

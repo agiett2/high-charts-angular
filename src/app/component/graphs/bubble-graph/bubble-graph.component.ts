@@ -19,7 +19,7 @@ export class BubbleGraphComponent implements OnInit {
     this.chart = new Chart({
       chart: {
         type: 'packedbubble',
-        height: '70%'
+        height: '50%'
       },
       title: {
         text: 'Carbon emissions around the world (2020)'

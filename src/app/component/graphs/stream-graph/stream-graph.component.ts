@@ -21,7 +21,7 @@ export class StreamGraphComponent implements OnInit {
         type: 'streamgraph',
         marginBottom: 30,
         zoomType: 'x',
-        height: '70%'
+        height: '50%'
       },
       colors: this.streamGraphService.getColors(),
       title: {
