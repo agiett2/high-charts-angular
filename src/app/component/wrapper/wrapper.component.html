@@ -1,11 +1,19 @@
-<div class="container">
-    <div class="row">
-        <h1>{{ headingMessage }}</h1>
+<div class="container text-center">
+  <div class="row my-5 align-middle">
+    <h1 class="text-uppercase">{{ headingMessage }}</h1>
+    <span class="bottom-border"></span>
+  </div>
+  <div class="row mb-5">
+    <div class="col-md-4">
+      <button class="btn btn-primary" (click)="showChart('pie')">{{ piegraphButtonText }}</button>
     </div>
-    <div class="row">
-        <div class="col-md-4">{{ piegraphButtonText }}</div>
-        <div class="col-md-4">{{ scatterGraphButtonText }}</div>
-        <div class="col-md-4">{{ lineGraphButtonText }}</div>
+
+    <div class="col-md-4">
+      <button class="btn btn-primary" (click)="showChart('bubble')">{{ bubbleGraphButtonText }}</button>
     </div>
-    <ng-container *ngComponentOutlet="graphComponent"></ng-container>
+    <div class="col-md-4">
+      <button class="btn btn-primary" (click)="showChart('stream')">{{ streamGraphButtonText }}</button>
+    </div>
+  </div>
+  <ng-container *ngComponentOutlet="graphComponent"></ng-container>
 </div>

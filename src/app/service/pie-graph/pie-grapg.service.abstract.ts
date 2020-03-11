@@ -1,5 +1,5 @@
-import { PieGraphData } from '../../model/pie-graph/pie-graph-data.interface';
+import { PieGraphDataInterface } from '../../model/pie-graph/pie-graph-data.interface';
 
 export abstract class PiegraphServiceAbstract {
-    public abstract getData(): PieGraphData[];
+    public abstract getData(): PieGraphDataInterface[];
 }

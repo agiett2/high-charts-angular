@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { GraphTypeEnum } from '../../enums/chart.enums';
 import { PieGraphComponent } from '../graphs/pie-graph/pie-graph.component';
-import { LineGraphComponent } from '../graphs/line-graph/line-graph.component';
-import { ScatterGraphComponent } from '../graphs/scatter-graph/scatter-graph.component';
+
+import { PiegraphServiceAbstract } from 'src/app/service/pie-graph/pie-grapg.service.abstract';
+import { BubbleGraphComponent } from '../graphs/bubble-graph/bubble-graph.component';
+import { StreamGraphComponent } from '../graphs/stream-graph/stream-graph.component';
 
 @Component({
     selector: 'app-wrapper',
@@ -15,17 +16,18 @@ export class WrapperComponent implements OnInit {
     public graphComponent: any;
     public headingMessage: string;
     public piegraphButtonText = 'Pie Graph';
-    public scatterGraphButtonText = 'Scatter Graph';
-    public lineGraphButtonText = 'Line Graph';
+    public bubbleGraphButtonText = 'Bubble Graph';
+    public streamGraphButtonText = 'Stream Graph';
+    public graphTypeEnum: GraphTypeEnum;
 
-    constructor(private _http: HttpClient) {
+    constructor(private piegraphService: PiegraphServiceAbstract) {
 
     }
 
     public ngOnInit(): void {
         this.chartName = 'Pie';
         this.graphComponent = PieGraphComponent;
-        this.headingMessage = `${this.chartName} Graph Demo`;
+        this.headingMessage = this.setHeading(this.chartName);
 
     }
 
@@ -33,19 +35,27 @@ export class WrapperComponent implements OnInit {
         switch (chart) {
             case GraphTypeEnum.Pie:
                 this.chartName = 'Pie';
+                this.headingMessage = this.setHeading(this.chartName);
                 this.graphComponent = PieGraphComponent;
                 break;
-            case GraphTypeEnum.Line:
-                this.chartName = 'Line';
-                this.graphComponent = LineGraphComponent;
+            case GraphTypeEnum.Stream:
+                this.chartName = 'Stream';
+                this.headingMessage = this.setHeading(this.chartName);
+                this.graphComponent = StreamGraphComponent;
                 break;
-            case GraphTypeEnum.Scatter:
-                this.chartName = 'Scatter';
-                this.graphComponent = ScatterGraphComponent;
+            case GraphTypeEnum.Bubble:
+                this.chartName = 'Bubble';
+                this.headingMessage = this.setHeading(this.chartName);
+                this.graphComponent = BubbleGraphComponent;
                 break;
             default:
                 this.chartName = 'Pie';
+                this.headingMessage = this.setHeading(this.chartName);
                 this.graphComponent = PieGraphComponent;
         }
+    }
+
+    public setHeading(chartName: string): string {
+        return `${chartName} Graph Demo`;
     }
 }
